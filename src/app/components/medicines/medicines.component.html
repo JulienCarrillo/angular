@@ -1,0 +1,45 @@
+<app-search-bar (searchChanged)="search($event)"></app-search-bar>
+<mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let medicines of displayedMedicines; let lastOne = last" style="padding: 30px;">
+        <img src="medicines.image" style="width: 40px; height: 40px; padding-right: 40px;">
+        Nom : {{medicines.name}}.<br>
+        Description : {{medicines.description}}.<br>
+        Prix : {{medicines.price}} €.<br>
+        
+        <!-- Le séparateur que l'on affiche pas pour le dernier élément de la liste -->
+        <mat-divider *ngIf="!lastOne"></mat-divider>
+    </mat-list-item>
+</mat-list>
+
+
+<!-- Le paginateur -->
+<!-- Au changement de page ou de taille du paginateur la méthode pageChange est appelée -->
+ <mat-paginator  [length]="paginatorInfo.length"
+                [pageIndex]="paginatorInfo.pageIndex"
+                [pageSize]="paginatorInfo.pageSize" 
+                [pageSizeOptions]="[5, 10]"
+                (page)="pageChange($event)"></mat-paginator>
+
+                <form class="example-form" [formGroup]="form" (ngSubmit)="testa()">
+
+                    <mat-card-content>
+            
+                        <mat-form-field class="example-full-width" color="accent">
+                            <input matInput placeholder="name" formControlName="name">
+                        </mat-form-field>
+    
+                        <mat-form-field class="example-full-width" color="accent">
+                            <input matInput placeholder="description" formControlName="description">
+                        </mat-form-field>
+    
+                        <mat-form-field class="example-full-width" color="accent">
+                            <input matInput placeholder="image" formControlName="image">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" color="accent">
+                            <input matInput placeholder="price" formControlName="price">
+                        </mat-form-field>
+                    </mat-card-content>
+    
+                    <button mat-stroked-button color="accent" class="btn-block" type="submit">Entrer Medicament</button>
+    
+                </form>

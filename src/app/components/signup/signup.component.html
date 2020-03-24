@@ -1,0 +1,69 @@
+<div class="login-container" fxLayout="column">
+    <app-toolbar fxFlex.gt-xs="64px" fxFlex.lt-xs="56px"></app-toolbar>
+
+    <div class="login-wrapper" fxLayout="column" fxFlex="100%">
+        
+        <mat-card class="box">
+        
+            <mat-card-header>
+                <mat-card-title>Inscription</mat-card-title>
+            </mat-card-header>
+
+            <form class="example-form" [formGroup]="form" (ngSubmit)="signup()">
+
+                <mat-card-content>
+        
+                    <mat-form-field class="example-full-width" color="accent">
+                        <input matInput placeholder="Prénom" formControlName="firstName">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" color="accent">
+                        <input matInput placeholder="Nom" formControlName="lastName">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" color="accent">
+                        <input matInput placeholder="Email" type="email" formControlName="email">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" color="accent">
+                        <input matInput placeholder="Mot de passe" [type]="hide.pwd ? 'password' : 'text'"  #pwd formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide.pwd = !hide.pwd">
+                            <mat-icon>{{hide.pwd ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" color="accent">
+                        <input matInput placeholder="Retaper le mot de passe" [type]="hide.retypePwd ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide.retypePwd = !hide.retypePwd">
+                            <mat-icon>{{hide.retypePwd ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" color="accent">
+                        <mat-label>Rôle</mat-label>
+                        <mat-select formControlName="role">
+                            <mat-option [value]="role" *ngFor="let role of roles">{{role}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" color="accent">
+                        <mat-label>Genre</mat-label>
+                        <mat-select formControlName="gender">
+                            <mat-option [value]="gender" *ngFor="let gender of genders">{{gender}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" color="accent" >
+                        <textarea placeholder="Adresse" matInput cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="1"
+                                    cdkAutosizeMaxRows="5" formControlName="address"></textarea>
+                    </mat-form-field>
+
+                </mat-card-content>
+
+                <button mat-stroked-button color="accent" class="btn-block" type="submit">Inscription</button>
+
+            </form>
+        </mat-card>
+    </div>
+</div>

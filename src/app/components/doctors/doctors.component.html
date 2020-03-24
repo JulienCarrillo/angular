@@ -1,0 +1,26 @@
+<!-- Notre composant barre de recherche -->
+<!-- Lorsqu'une recherche est éffectuée la méthode search est appelée -->
+<app-search-bar (searchChanged)="search($event)"></app-search-bar>
+<!-- Ajout d'un medecin en dur -->
+<form name="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input formControlName="fn">
+    <input formControlName="ln">
+    <button class="btn button-primary" type="submit">Validé</button>
+</form>
+
+<!-- La liste des éléments affichés qui dans l'idéal devrait être dans un composant à part -->
+<mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let doctor of displayedDoctors; let lastOne = last">
+        {{doctor.firstName}} {{doctor.lastName}} 
+        <!-- Le séparateur que l'on affiche pas pour le dernier élément de la liste -->
+        <mat-divider *ngIf="!lastOne"></mat-divider>
+    </mat-list-item>
+</mat-list>
+
+<!-- Le paginateur -->
+<!-- Au changement de page ou de taille du paginateur la méthode pageChange est appelée -->
+<mat-paginator  [length]="paginatorInfo.length"
+                [pageIndex]="paginatorInfo.pageIndex"
+                [pageSize]="paginatorInfo.pageSize" 
+                [pageSizeOptions]="[5, 10]"
+                (page)="pageChange($event)"></mat-paginator>

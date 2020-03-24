@@ -1,0 +1,15 @@
+<!-- Champs de saisie matérial -->
+<mat-form-field color="accent">
+    <!-- Icon loupe au début du champs de saisie -->
+    <mat-icon matPrefix>search</mat-icon>
+    <!-- Champs de saisie -->
+    <!-- Ce champs déclenche la méthode search à chaque fois que l'on tape un caractère -->
+    <!-- Le #input permet de créer une variable qui contient toutes les informations de la balise input -->
+    <input matInput type="text" placeholder="Rechercher" (input)="search($event.target.value)" #input>
+    <!-- Bouton pour vider le champs de saisie -->
+    <!-- On utilise la variable input créée au dessus à laquelle on modifie la valeur du champs de saisie -->
+    <!-- Puis on appelle la méthode search pour envoyer le fait que le champs est vide -->
+    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value = ''; search('');">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
